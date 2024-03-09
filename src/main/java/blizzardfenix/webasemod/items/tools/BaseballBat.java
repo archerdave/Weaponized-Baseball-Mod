@@ -58,7 +58,7 @@ public class BaseballBat extends SwordItem {
 
 	@Override
 	public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
-		if (!player.level.isClientSide() && entity.tickCount > 5) {
+		if (!player.level().isClientSide() && entity.tickCount > 5) {
 			if (entity instanceof ThrowableItemProjectile) {
 				ThrowableItemProjectile throwableentity = (ThrowableItemProjectile) entity;
 				throwableentity.setOwner(player);

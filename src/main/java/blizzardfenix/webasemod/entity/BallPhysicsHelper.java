@@ -44,7 +44,7 @@ public class BallPhysicsHelper {
 		if (owner instanceof Player) {
 			Player player = (Player) owner;
 			if (player.getAbilities().instabuild || player.getInventory().add(throwable.getItem())) {
-				((ServerLevel) player.level).getChunkSource().broadcast(throwable, new ClientboundTakeItemEntityPacket(throwable.getId(), player.getId(), 1));
+				((ServerLevel) player.level()).getChunkSource().broadcast(throwable, new ClientboundTakeItemEntityPacket(throwable.getId(), player.getId(), 1));
 	
 				throwable.remove(RemovalReason.DISCARDED);
 			}

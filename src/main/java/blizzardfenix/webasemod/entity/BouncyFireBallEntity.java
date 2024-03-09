@@ -35,18 +35,18 @@ public class BouncyFireBallEntity extends BouncyBallEntity {
 		super.tick();
 		
 		Vec3 pos = this.getCenterPositionVec();
-        this.level.addParticle(ParticleTypes.SMOKE, pos.x, pos.y, pos.z, 0.0D, 0.0D, 0.0D);
+        this.level().addParticle(ParticleTypes.SMOKE, pos.x, pos.y, pos.z, 0.0D, 0.0D, 0.0D);
 	}
 		
 	@Override
 	public void hitBall(Vec3 shootvec, float inaccuracy) {		
 		//Spawn fire charge entity and delete this entity
-		SmallFireball smallfireballentity = new SmallFireball(this.level, (LivingEntity) this.getOwner(), // Must be a livingentity if hit with bat
+		SmallFireball smallfireballentity = new SmallFireball(this.level(), (LivingEntity) this.getOwner(), // Must be a livingentity if hit with bat
 				shootvec.x + 0.0075D * (double)inaccuracy, 
 				shootvec.y + 0.0075D * (double)inaccuracy, 
 				shootvec.z + 0.0075D * (double)inaccuracy);
         smallfireballentity.setPos(this.getX(), this.getY(), this.getZ());
-        this.level.addFreshEntity(smallfireballentity);
+        this.level().addFreshEntity(smallfireballentity);
 		this.remove(RemovalReason.DISCARDED);
 	}
 	

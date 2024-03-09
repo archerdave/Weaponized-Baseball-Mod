@@ -76,7 +76,7 @@ public class BouncyBallEntity extends ThrowableBallEntity implements IEntityAddi
 		float totalbounciness = velocityScaling.x;
 		float totalfriction = velocityScaling.y;
 
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide) {
 			if (speedSqr > BallPhysicsHelper.MAXBALLSPEEDSQR - 2F) {
 				if (this.tickCount > this.fastdroptimer + 5) {
 					this.starttimer = this.tickCount;
@@ -150,7 +150,7 @@ public class BouncyBallEntity extends ThrowableBallEntity implements IEntityAddi
 			// Code for ricochetting
 			//Entity thrower = this.getOwner(); // Note: this is null on the client
 //			boolean specialbounce = target != thrower && target instanceof LivingEntity && speed > 0.4F;
-//			if (!this.level.isClientSide && specialbounce) {				
+//			if (!this.level().isClientSide && specialbounce) {				
 //				// Chance of bouncing towards a living entity
 //				if (syncedrand.nextFloat() < ricochetChance) {
 //					// Shoot towards the player that threw the ball, or otherwise shoot towards the closest mob
@@ -161,7 +161,7 @@ public class BouncyBallEntity extends ThrowableBallEntity implements IEntityAddi
 //						// Find the closest entity
 //						double d0 = -1.0D;
 //						Entity nexttarget = null;
-//						for (Entity entity : this.level.getEntities(this,
+//						for (Entity entity : this.level().getEntities(this,
 //								this.getBoundingBox().inflate(richochetRange), input -> {
 //									return !input.isSpectator() && input.isPickable() && input != target && input instanceof LivingEntity
 //											&& ((LivingEntity)input).canSee(this);
@@ -382,7 +382,7 @@ public class BouncyBallEntity extends ThrowableBallEntity implements IEntityAddi
 	 */
 	@Override
 	public void shootFromRotation(Entity entityThrower, float rotationPitchIn, float rotationYawIn, float pitchOffset, float speed, float inaccuracy) {
-		if (!this.level.isClientSide)
+		if (!this.level().isClientSide)
 			markHurt();
 		super.shootFromRotation(entityThrower, rotationPitchIn, rotationYawIn, pitchOffset, speed, inaccuracy);
 }

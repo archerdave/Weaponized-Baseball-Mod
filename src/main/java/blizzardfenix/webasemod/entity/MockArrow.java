@@ -47,7 +47,7 @@ public class MockArrow extends AbstractArrow implements IEntityAdditionalSpawnDa
 	@Override
 	public void tick() {		
 		// Remove if it has been more than five seconds since this MockArrow was last accessed.
-		if(!this.level.isClientSide && this.tickCount >= this.lastAccessTime + 250) {
+		if(!this.level().isClientSide && this.tickCount >= this.lastAccessTime + 250) {
 			this.remove(RemovalReason.DISCARDED);
 		}
 		ThrowableBallEntity tempspawner = this.getSpawner();
@@ -61,8 +61,8 @@ public class MockArrow extends AbstractArrow implements IEntityAdditionalSpawnDa
 	
 	@Nullable
 	public ThrowableBallEntity getSpawner() {
-		if ((this.spawner == null || !this.spawner.isAlive()) && this.spawnerid != null && this.level instanceof ServerLevel) {
-			Entity entity = ((ServerLevel) this.level).getEntity(this.spawnerid);
+		if ((this.spawner == null || !this.spawner.isAlive()) && this.spawnerid != null && this.level() instanceof ServerLevel) {
+			Entity entity = ((ServerLevel) this.level()).getEntity(this.spawnerid);
 			if (entity instanceof ThrowableBallEntity) {
 				this.spawner = (ThrowableBallEntity) entity;
 			} else {
@@ -82,7 +82,7 @@ public class MockArrow extends AbstractArrow implements IEntityAdditionalSpawnDa
 	@Override
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		if (compound.contains("spawner") && this.level instanceof ServerLevel)
+		if (compound.contains("spawner") && this.level() instanceof ServerLevel)
 			this.spawnerid = NbtUtils.loadUUID(compound.get("spawner"));
 	}
 
