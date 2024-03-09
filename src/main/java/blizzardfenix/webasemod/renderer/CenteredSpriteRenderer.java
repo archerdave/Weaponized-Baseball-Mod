@@ -1,10 +1,10 @@
 package blizzardfenix.webasemod.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
+//import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -14,6 +14,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import net.minecraft.world.item.ItemDisplayContext;
 
 @OnlyIn(Dist.CLIENT)
 public class CenteredSpriteRenderer<T extends Entity & ItemSupplier> extends ThrownItemRenderer<T> {
@@ -44,11 +46,11 @@ public class CenteredSpriteRenderer<T extends Entity & ItemSupplier> extends Thr
 			// Translating up to correct when viewing from the side
 			matrixStack.translate(0, -this.offset*0.07 + entity.getBbHeight() / (2 * this.scale), 0);
 			matrixStack.mulPose(this.entityRenderDispatcher.cameraOrientation());
-			matrixStack.mulPose(Vector3f.YP.rotationDegrees(180.0F));
+			matrixStack.mulPose(Axis.YP.rotationDegrees(180.0F));
 			// Translate it along the coordinate system that looks at the camera to correct when viewing from the top or bottom
 			matrixStack.translate(0, -0.125 + this.offset, 0);
-			this.itemRenderer.renderStatic(entity.getItem(), ItemTransforms.TransformType.GROUND, number3, OverlayTexture.NO_OVERLAY, matrixStack,
-					renderBuffer, entity.getId());
+			this.itemRenderer.renderStatic(entity.getItem(), ItemDisplayContext.GROUND, number3, OverlayTexture.NO_OVERLAY, matrixStack, 
+					renderBuffer, entity.level(), entity.getId());           //TODO BakedItem instead of ItemDisplayContext
 			matrixStack.popPose();
 			// We cannot call super.super so we must create a separate method to do it ourselves
 			superEntityRender(entity, number1, number2, matrixStack, renderBuffer, number3);

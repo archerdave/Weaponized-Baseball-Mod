@@ -3,9 +3,9 @@ package blizzardfenix.webasemod.renderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.PoseStack.Pose;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Matrix3f;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
+import com.mojang.math.Axis;
 
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -36,7 +36,7 @@ public class CenteredDragonFireBallRenderer extends DragonFireballRenderer {
 		// Translating up to correct when viewing from the side
 		matrixStack.translate(0, 0.25, 0);
 		matrixStack.mulPose(this.entityRenderDispatcher.cameraOrientation());
-		matrixStack.mulPose(Vector3f.YP.rotationDegrees(180.0F));
+		matrixStack.mulPose(Axis.YP.rotationDegrees(180.0F));
 		// Translate it along the coordinate system that looks at the camera to correct when viewing from the top or bottom
 		matrixStack.translate(0, -0.25, 0);
 		Pose matrixstack$entry = matrixStack.last();

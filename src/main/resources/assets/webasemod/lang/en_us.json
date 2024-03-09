@@ -18,6 +18,7 @@
 	"item.webasemod.netherite_bat": "Netherite Bat",
 	"item.webasemod.diamond_bat": "Diamond Bat",
 	"itemGroup.webasemod": "Weaponized Baseball",
+	"creativetab.webasemod_tab": "Weaponized Baseball",
 	
 	"key.category.webasemod": "Weaponized Baseball",
 	"key.webasemod.throwuptoggle": "Toggle throwing upwards",

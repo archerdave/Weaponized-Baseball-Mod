@@ -18,6 +18,7 @@
 	"item.webasemod.netherite_bat": "Netherite Knuppel",
 	"item.webasemod.diamond_bat": "Diamanten Knuppel",
 	"itemGroup.webasemod": "Weaponized Baseball",
+	"creativetab.webasemod_tab": "Weaponized Baseball",
 	
 	"key.category.webasemod": "Weaponized Baseball",
 	"key.webasemod.throwuptoggle": "Toggle of je de bal op gooit",
